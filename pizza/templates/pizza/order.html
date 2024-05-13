@@ -10,7 +10,7 @@
 
     <h2>{{ note }}</h2>
 
-    <form enctype="multipart/form-data" {% url 'order' %}" method="post">
+    <form {% url 'order' %} method="post">
         {% csrf_token %}
         {{ pizzaform }}
         <input type="submit" value="Order Pizza">
