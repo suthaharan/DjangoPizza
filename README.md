@@ -133,4 +133,19 @@ Want more than one pizza?
 {{ pizzaform.topping1.label_tag  }}
 {{ pizzaform.topping1 }}
 {{ pizzaform.topping1.errors }}
+<label for={{pizzaform.size.id_for_label }}">Size:</label>
+
 ```
+
+#### Setting up bootstrap to the project
+* $ pip install django-widget-tweaks
+* Add "widget-tweaks" to installed apps section
+* Download boostrap template from getboostrap
+* Load the widget tweaks into the template
+  
+
+#### Adding in static image
+* In the home page html we need to add a hero image
+* In settings.py, add in STATIC_ROOT =  BASE_DIR / 'static'
+* Inside pizza directory, add in static folder and add in an image to that folder
+* $ python manage.py collectstatic
