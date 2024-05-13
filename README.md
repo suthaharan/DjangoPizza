@@ -1,4 +1,7 @@
 ### Django Forms
+* Python 3.8.6
+* Django 4.2.13
+* Pip 20.3.3
 
 ```
 $ pip install virtualenv
@@ -67,6 +70,55 @@ $ python manage.py createsuperuser
 
 * Forms
 * * Customize forms using labels
-* * Customize forms using widgets
-* 
+* * Customize forms using widgets (for multiple checkbox, select dropdown, text area, password)
+* Forms & Files
+* * $ pip install pillow
 
+
+```python
+# forms.py
+
+from django import forms
+from .models import Pizza, Size
+
+# class PizzaForm(forms.Form):
+#     topping1 = forms.CharField(label='Topping 1', max_length=100)
+#     topping2 = forms.CharField(label='Topping 2', max_length=100)
+#     size = forms.ChoiceField(label='Size', choices=[('Small', 'Small'), ('Medium', 'Medium'), ('Large', 'Large')])
+
+class PizzaForm(forms.ModelForm):
+
+    image = forms.ImageField()
+
+    class Meta:
+            model = Pizza
+            fields = ['topping1', 'topping2', 'size']
+            labels = {
+            "topping1": "Topping 1",
+            "topping2": "Topping 2",
+            }
+
+class MultiplePizzaForm(forms.Form):
+    number = forms.IntegerField(min_value=2, max_value=6)
+
+# order.html
+
+
+
+    <form enctype="multipart/form-data" {% url 'order' %}" method="post">
+        {% csrf_token %}
+        {{ pizzaform }}
+        <input type="submit" value="Order Pizza">
+    </form>
+
+<br><br>
+Want more than one pizza?
+<form action="{% url 'pizzas' %}" method="get">
+  {% csrf_token %}
+  {{ multiple_form }}
+  <input type="submit" value="Get Pizzas">
+</form>
+
+
+
+```
