@@ -122,3 +122,15 @@ Want more than one pizza?
 
 
 ```
+
+* Add in "novalidate" to form tag, if you do not want built-in validation to work
+* Forms can be rendered as
+* * forms.as_ul
+* * forms.as_p
+* * forms.as_table (table tag needs to surround the form table elements)
+* Field by field form element display
+```html
+{{ pizzaform.topping1.label_tag  }}
+{{ pizzaform.topping1 }}
+{{ pizzaform.topping1.errors }}
+```
