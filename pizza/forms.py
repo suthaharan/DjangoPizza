@@ -10,6 +10,9 @@ from .models import Pizza, Size
 class PizzaForm(forms.ModelForm):
     size = forms.ModelChoiceField(queryset=Size.objects, empty_label=None, widget=forms.RadioSelect)
     # image = forms.ImageField()
+    # email = forms.EmailField()
+    # url = forms.URLField()
+    
     class Meta:
             model = Pizza
             fields = ['topping1', 'topping2', 'size']
